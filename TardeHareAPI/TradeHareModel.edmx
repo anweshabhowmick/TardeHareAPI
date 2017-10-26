@@ -1,0 +1,1959 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="TRADEHAREDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActId" />
+          </Key>
+          <Property Name="ActId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActType" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="UserId" Type="tinyint" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="30" />
+          <Property Name="TableId" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="1999" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Buyers">
+          <Key>
+            <PropertyRef Name="BuyId" />
+          </Key>
+          <Property Name="BuyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BuyerName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="99" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="State" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email1" Type="nvarchar" MaxLength="99" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommodityList">
+          <Key>
+            <PropertyRef Name="ComId" />
+          </Key>
+          <Property Name="ComId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CommodityName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="CommoditySpec" Type="nvarchar" MaxLength="99" />
+          <Property Name="TradeRules" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Documents">
+          <Key>
+            <PropertyRef Name="DocId" />
+          </Key>
+          <Property Name="DocId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TableName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="TableId" Type="int" Nullable="false" />
+          <Property Name="DocName" Type="nvarchar" MaxLength="199" />
+          <Property Name="DocPath" Type="nvarchar" MaxLength="499" Nullable="false" />
+          <Property Name="DocType" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="UserId" Type="tinyint" Nullable="false" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvId" />
+          </Key>
+          <Property Name="InvId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagDetId" Type="int" Nullable="false" />
+          <Property Name="InvoiceNo" Type="nvarchar" MaxLength="99" />
+          <Property Name="InvoiceDate" Type="date" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'TESTDB.dbo.MailRecipients' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="MailRecipients">
+          <Property Name="RecipientGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="Recipients" Type="nvarchar" MaxLength="999" />
+        </EntityType>-->
+        <EntityType Name="NotifyParty">
+          <Key>
+            <PropertyRef Name="ParId" />
+          </Key>
+          <Property Name="ParId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PartyName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="99" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="State" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email1" Type="nvarchar" MaxLength="99" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packers">
+          <Key>
+            <PropertyRef Name="PacId" />
+          </Key>
+          <Property Name="PacId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PackerName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="99" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="State" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="15" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email1" Type="nvarchar" MaxLength="99" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Packing">
+          <Key>
+            <PropertyRef Name="PackId" />
+          </Key>
+          <Property Name="PackId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagDetId" Type="int" Nullable="false" />
+          <Property Name="Packer" Type="nvarchar" MaxLength="99" />
+          <Property Name="Addressee" Type="nvarchar" MaxLength="99" />
+          <Property Name="Packing" Type="nvarchar" MaxLength="199" />
+          <Property Name="ContainerDetail" Type="nvarchar" MaxLength="99" />
+          <Property Name="Weight" Type="nvarchar" MaxLength="49" />
+          <Property Name="ShippingLine" Type="nvarchar" MaxLength="49" />
+          <Property Name="Vessel" Type="nvarchar" MaxLength="49" />
+          <Property Name="BookingRef" Type="nvarchar" MaxLength="49" />
+          <Property Name="VoyNo" Type="nvarchar" MaxLength="49" />
+          <Property Name="ReleaseNo" Type="nvarchar" MaxLength="49" />
+          <Property Name="ETD" Type="date" />
+          <Property Name="EmptyDepot" Type="nvarchar" MaxLength="49" />
+          <Property Name="PortOfLoading" Type="nvarchar" MaxLength="49" />
+          <Property Name="PortOfTranshipment" Type="nvarchar" MaxLength="49" />
+          <Property Name="FinalDestination" Type="nvarchar" MaxLength="49" />
+          <Property Name="OtherRequirement" Type="nvarchar" MaxLength="999" />
+          <Property Name="ReceivedQty" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="ShippedQty" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="AdjQty" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="FXRate" Type="smallmoney" />
+          <Property Name="Brokerage_USD" Type="smallmoney" />
+          <Property Name="BankExp_USD" Type="smallmoney" />
+          <Property Name="DoxExp_USD" Type="smallmoney" />
+          <Property Name="Freight_USD" Type="smallmoney" />
+          <Property Name="Freight_AUD" Type="smallmoney" />
+          <Property Name="OtherRequirement1" Type="nvarchar" MaxLength="999" />
+          <Property Name="OtherRequirement2" Type="nvarchar" MaxLength="999" />
+          <Property Name="OtherRequirement3" Type="nvarchar" MaxLength="999" />
+          <Property Name="OtherRequirement4" Type="nvarchar" MaxLength="999" />
+          <Property Name="OtherRequirement5" Type="nvarchar" MaxLength="999" />
+          <Property Name="Packing_AUD" Type="smallmoney" />
+          <Property Name="RFP" Type="nvarchar" MaxLength="199" />
+          <Property Name="EDN" Type="nvarchar" MaxLength="199" />
+          <Property Name="CommoditySpec" Type="nvarchar" MaxLength="99" />
+          <Property Name="Exporter" Type="nvarchar" MaxLength="99" />
+          <Property Name="ActFreight_AUD" Type="smallmoney" />
+          <Property Name="ActFreight_USD" Type="smallmoney" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PortList">
+          <Key>
+            <PropertyRef Name="PortId" />
+          </Key>
+          <Property Name="PortId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PortName" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PortType" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Purchases">
+          <Key>
+            <PropertyRef Name="PurId" />
+          </Key>
+          <Property Name="PurId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractNo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContractDate" Type="date" Nullable="false" />
+          <Property Name="ContractType" Type="nvarchar" MaxLength="30" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Commodity" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HAContract" Type="tinyint" Nullable="false" />
+          <Property Name="HAQuantity" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Quality" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="DeliveryPeriod" Type="date" Nullable="false" />
+          <Property Name="Packing" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="PortOfLoading" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PaymentTerms" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Season" Type="nvarchar" MaxLength="20" />
+          <Property Name="TradeRules" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Broker" Type="nvarchar" MaxLength="99" />
+          <Property Name="BrokerContact" Type="nvarchar" MaxLength="99" />
+          <Property Name="SpecialCondition" Type="nvarchar" MaxLength="499" />
+          <Property Name="Representative" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="RepresentativePhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepresentativeEmail" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerContact" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerContactPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SellerContactFax" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerContactEmail" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerBank" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankABN" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankBSB" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankAccountNo" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankAccountName" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerContractNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Representatives">
+          <Key>
+            <PropertyRef Name="RepId" />
+          </Key>
+          <Property Name="RepId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepresentativeName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sales">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContractNo" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="ContractDate" Type="date" Nullable="false" />
+          <Property Name="ContractType" Type="nvarchar" MaxLength="30" />
+          <Property Name="BuyerId" Type="int" Nullable="false" />
+          <Property Name="NotifyPartyId" Type="int" />
+          <Property Name="Commodity" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="CommoditySpec" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QuantitySpec" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="HAContract" Type="tinyint" Nullable="false" />
+          <Property Name="HAQuantity" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Quality" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="Price" Type="smallmoney" Nullable="false" />
+          <Property Name="PriceSpec" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="Origin" Type="nvarchar" MaxLength="99" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="199" />
+          <Property Name="Shipment" Type="date" Nullable="false" />
+          <Property Name="ShipmentSpec" Type="nvarchar" MaxLength="199" />
+          <Property Name="Packing" Type="nvarchar" MaxLength="199" Nullable="false" />
+          <Property Name="PortOfDischarge" Type="nvarchar" MaxLength="30" />
+          <Property Name="PaymentTerms" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Broker" Type="nvarchar" MaxLength="99" />
+          <Property Name="BrokerContact" Type="nvarchar" MaxLength="99" />
+          <Property Name="Representative" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="BuyerBank" Type="nvarchar" MaxLength="40" />
+          <Property Name="AQIS" Type="nvarchar" MaxLength="99" />
+          <Property Name="Fumigation" Type="nvarchar" MaxLength="99" />
+          <Property Name="TradeRules" Type="nvarchar" MaxLength="99" />
+          <Property Name="SpecialCondition" Type="nvarchar" MaxLength="499" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Suppliers">
+          <Key>
+            <PropertyRef Name="SupId" />
+          </Key>
+          <Property Name="SupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine1" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="AddressLine2" Type="nvarchar" MaxLength="99" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="State" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+          <Property Name="Email1" Type="nvarchar" MaxLength="99" />
+          <Property Name="Email2" Type="nvarchar" MaxLength="99" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagDetail">
+          <Key>
+            <PropertyRef Name="TagDetId" />
+          </Key>
+          <Property Name="TagDetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagId" Type="int" Nullable="false" />
+          <Property Name="PurId" Type="int" Nullable="false" />
+          <Property Name="SaleId" Type="int" Nullable="false" />
+          <Property Name="TagQuantity" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TagMaster">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Commodity" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAuth">
+          <Key>
+            <PropertyRef Name="UserLoginId" />
+          </Key>
+          <Property Name="UserLoginId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Token" Type="nvarchar" MaxLength="499" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="Active" Type="tinyint" />
+          <Property Name="Updt_Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="99" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="30" />
+          <Property Name="Role" Type="nvarchar" MaxLength="30" />
+          <Property Name="Active" Type="tinyint" Nullable="false" />
+          <Property Name="Updt_Time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TESTDB.dbo.uvwLastPurchaseDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="uvwLastPurchaseDetails">
+          <Key>
+            <PropertyRef Name="Commodity" />
+          </Key>
+          <Property Name="Commodity" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="Quantitiy" Type="int" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+          <Property Name="Quality" Type="nvarchar" MaxLength="99" />
+          <Property Name="Price" Type="smallmoney" />
+          <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+          <Property Name="DeliveryPeriod" Type="date" />
+          <Property Name="Packing" Type="nvarchar" MaxLength="199" />
+          <Property Name="PaymentTerms" Type="nvarchar" MaxLength="99" />
+          <Property Name="TradeRules" Type="nvarchar" MaxLength="99" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'TESTDB.dbo.uvwLastSellerDetails' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="uvwLastSellerDetails">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Broker" Type="nvarchar" MaxLength="99" />
+          <Property Name="BrokerContact" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerContact" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerContactPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="SellerContactFax" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerContactEmail" Type="nvarchar" MaxLength="99" />
+          <Property Name="SellerBank" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankABN" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankBSB" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankAccountNo" Type="nvarchar" MaxLength="40" />
+          <Property Name="SellerBankAccountName" Type="nvarchar" MaxLength="99" />
+        </EntityType>
+        <Function Name="ufnGetEntryStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="ActType" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ufnGetStockDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="TranType" Type="varchar" MaxLength="20" />
+                <Property Name="TranId" Type="int" />
+                <Property Name="ContractDateDisplay" Type="varchar" MaxLength="8" />
+                <Property Name="ContractDate" Type="date" />
+                <Property Name="ContractNo" Type="nvarchar" MaxLength="30" />
+                <Property Name="ContractType" Type="nvarchar" MaxLength="30" />
+                <Property Name="PartyName" Type="nvarchar" MaxLength="99" />
+                <Property Name="Commodity" Type="nvarchar" MaxLength="99" />
+                <Property Name="Quantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+                <Property Name="Quality" Type="nvarchar" MaxLength="99" />
+                <Property Name="Price" Type="smallmoney" />
+                <Property Name="Currency" Type="nvarchar" MaxLength="10" />
+                <Property Name="DeliveryLocation" Type="nvarchar" MaxLength="199" />
+                <Property Name="DeliveryPeriodDisplay" Type="varchar" MaxLength="10" />
+                <Property Name="Packing" Type="nvarchar" MaxLength="199" />
+                <Property Name="Port" Type="nvarchar" MaxLength="30" />
+                <Property Name="HAContract" Type="tinyint" />
+                <Property Name="HAQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="PurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SpotPurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SpotSaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="PurValue" Type="money" />
+                <Property Name="SaleValue" Type="money" />
+                <Property Name="UnTagPurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="UnTagSaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="UnTagPurValue" Type="money" />
+                <Property Name="UnTagSaleValue" Type="money" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ufnGetStockSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Commodity" Type="nvarchar" MaxLength="99" />
+                <Property Name="Unit" Type="nvarchar" MaxLength="20" />
+                <Property Name="PurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SpotPurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SpotSaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="NetQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="AvgPurPrice" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="AvgSalePrice" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="AvgUnTagPurPrice" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="AvgUnTagSalePrice" Type="decimal" Precision="10" Scale="2" />
+                <Property Name="UnTagPurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="UnTagSaleQuantity" Type="decimal" Precision="8" Scale="2" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ufnGetTagDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagId" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="PurContractDateDisplay" Type="varchar" MaxLength="8" />
+                <Property Name="PurContractDate" Type="date" />
+                <Property Name="PurContractNo" Type="nvarchar" MaxLength="30" />
+                <Property Name="PurContractType" Type="nvarchar" MaxLength="30" />
+                <Property Name="SellerContractNo" Type="nvarchar" MaxLength="50" />
+                <Property Name="SupplierName" Type="nvarchar" MaxLength="99" />
+                <Property Name="PurCommodity" Type="nvarchar" MaxLength="99" />
+                <Property Name="PurQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="PurUnit" Type="nvarchar" MaxLength="20" />
+                <Property Name="PurHAContract" Type="tinyint" />
+                <Property Name="PurHAQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="PurQuality" Type="nvarchar" MaxLength="99" />
+                <Property Name="PurPrice" Type="smallmoney" />
+                <Property Name="PurCurrency" Type="nvarchar" MaxLength="10" />
+                <Property Name="PurDeliveryLocation" Type="nvarchar" MaxLength="199" />
+                <Property Name="PurDeliveryPeriodDisplay" Type="varchar" MaxLength="10" />
+                <Property Name="PurPacking" Type="nvarchar" MaxLength="199" />
+                <Property Name="PortOfLoading" Type="nvarchar" MaxLength="30" />
+                <Property Name="TradeRules" Type="nvarchar" MaxLength="99" />
+                <Property Name="PaymentTerms" Type="nvarchar" MaxLength="99" />
+                <Property Name="SaleContractDateDisplay" Type="varchar" MaxLength="8" />
+                <Property Name="SaleContractDate" Type="date" />
+                <Property Name="SaleContractNo" Type="nvarchar" MaxLength="30" />
+                <Property Name="SaleContractType" Type="nvarchar" MaxLength="30" />
+                <Property Name="BuyerName" Type="nvarchar" MaxLength="99" />
+                <Property Name="SaleCommodity" Type="nvarchar" MaxLength="99" />
+                <Property Name="SaleCommoditySpec" Type="nvarchar" MaxLength="99" />
+                <Property Name="SaleQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SaleQuantitySpec" Type="nvarchar" MaxLength="199" />
+                <Property Name="SaleUnit" Type="nvarchar" MaxLength="20" />
+                <Property Name="SaleHAContract" Type="tinyint" />
+                <Property Name="SaleHAQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="SaleQuality" Type="nvarchar" MaxLength="199" />
+                <Property Name="SalePrice" Type="smallmoney" />
+                <Property Name="SalePriceSpec" Type="nvarchar" MaxLength="199" />
+                <Property Name="SaleCurrency" Type="nvarchar" MaxLength="10" />
+                <Property Name="SaleDeliveryLocation" Type="nvarchar" MaxLength="199" />
+                <Property Name="SaleShipmentDisplay" Type="varchar" MaxLength="10" />
+                <Property Name="SaleShipmentSpec" Type="nvarchar" MaxLength="199" />
+                <Property Name="SalePacking" Type="nvarchar" MaxLength="199" />
+                <Property Name="PortOfDischarge" Type="nvarchar" MaxLength="30" />
+                <Property Name="SaleBroker" Type="nvarchar" MaxLength="99" />
+                <Property Name="TagId" Type="int" />
+                <Property Name="TagDetId" Type="int" />
+                <Property Name="PurId" Type="int" />
+                <Property Name="SaleId" Type="int" />
+                <Property Name="InvId" Type="int" />
+                <Property Name="InvoiceNo" Type="nvarchar" MaxLength="99" />
+                <Property Name="InvoiceDate" Type="date" />
+                <Property Name="PackId" Type="int" />
+                <Property Name="Packer" Type="nvarchar" MaxLength="99" />
+                <Property Name="ReceivedQty" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="ShippedQty" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="AdjQty" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="BookingRef" Type="nvarchar" MaxLength="49" />
+                <Property Name="CommoditySpec" Type="nvarchar" MaxLength="99" />
+                <Property Name="Exporter" Type="nvarchar" MaxLength="99" />
+                <Property Name="ETD" Type="date" />
+                <Property Name="FXRate" Type="smallmoney" />
+                <Property Name="Brokerage_USD" Type="smallmoney" />
+                <Property Name="BankExp_USD" Type="smallmoney" />
+                <Property Name="DoxExp_USD" Type="smallmoney" />
+                <Property Name="Freight_USD" Type="smallmoney" />
+                <Property Name="Freight_AUD" Type="smallmoney" />
+                <Property Name="ActFreight_USD" Type="smallmoney" />
+                <Property Name="ActFreight_AUD" Type="smallmoney" />
+                <Property Name="Packing_AUD" Type="smallmoney" />
+                <Property Name="TotalPurchaseCostAUD" Type="money" />
+                <Property Name="TotalSaleIncomeUSD" Type="money" />
+                <Property Name="TagQuantity" Type="decimal" Precision="8" Scale="2" />
+                <Property Name="CreateStatus" Type="nvarchar" MaxLength="99" />
+                <Property Name="ModifyStatus" Type="nvarchar" MaxLength="99" />
+                <Property Name="AuthorizeStatus" Type="nvarchar" MaxLength="99" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="ufnGetTaggedPurchaseQty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="PurId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ufnGetTaggedSalesQty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="decimal">
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspAddActivityLog" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ActType" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableId" Type="int" Mode="In" />
+          <Parameter Name="Remarks" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspAddBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuyerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddCommodity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="CommodityName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeRules" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableId" Type="int" Mode="In" />
+          <Parameter Name="DocName" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocPath" Type="nvarchar" Mode="In" />
+          <Parameter Name="DocType" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspAddInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagDetId" Type="int" Mode="In" />
+          <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="InvoiceDate" Type="date" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddNotifyParty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PartyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddPacker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PackerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddPackingInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagDetId" Type="int" Mode="In" />
+          <Parameter Name="Addressee" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContainerDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="Weight" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingLine" Type="nvarchar" Mode="In" />
+          <Parameter Name="Vessel" Type="nvarchar" Mode="In" />
+          <Parameter Name="BookingRef" Type="nvarchar" Mode="In" />
+          <Parameter Name="VoyNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReleaseNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ETD" Type="date" Mode="In" />
+          <Parameter Name="EmptyDepot" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfLoading" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfTranshipment" Type="nvarchar" Mode="In" />
+          <Parameter Name="FinalDestination" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packer" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReceivedQty" Type="decimal" Mode="In" />
+          <Parameter Name="ShippedQty" Type="decimal" Mode="In" />
+          <Parameter Name="AdjQty" Type="decimal" Mode="In" />
+          <Parameter Name="FXRate" Type="smallmoney" Mode="In" />
+          <Parameter Name="Brokerage_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="BankExp_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="DoxExp_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="Freight_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="Freight_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="OtherRequirement1" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement2" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement3" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement4" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement5" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="RFP" Type="nvarchar" Mode="In" />
+          <Parameter Name="EDN" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Exporter" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActFreight_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="ActFreight_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddPort" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortType" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddPurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractDate" Type="date" Mode="In" />
+          <Parameter Name="SupplierId" Type="int" Mode="In" />
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quality" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="smallmoney" Mode="In" />
+          <Parameter Name="Currency" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryLocation" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryPeriod" Type="date" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfLoading" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentTerms" Type="nvarchar" Mode="In" />
+          <Parameter Name="Season" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeRules" Type="nvarchar" Mode="In" />
+          <Parameter Name="Broker" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrokerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCondition" Type="nvarchar" Mode="In" />
+          <Parameter Name="Representative" Type="nvarchar" Mode="In" />
+          <Parameter Name="RepresentativePhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="RepresentativeEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactFax" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBank" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankABN" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankBSB" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankAccountNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankAccountName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractType" Type="nvarchar" Mode="In" />
+          <Parameter Name="HAContract" Type="tinyint" Mode="In" />
+          <Parameter Name="HAQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddRepresentative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RepresentativeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractDate" Type="date" Mode="In" />
+          <Parameter Name="BuyerId" Type="int" Mode="In" />
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+          <Parameter Name="QuantitySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quality" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="smallmoney" Mode="In" />
+          <Parameter Name="PriceSpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Origin" Type="nvarchar" Mode="In" />
+          <Parameter Name="Currency" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryLocation" Type="nvarchar" Mode="In" />
+          <Parameter Name="Shipment" Type="date" Mode="In" />
+          <Parameter Name="ShipmentSpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfDischarge" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentTerms" Type="nvarchar" Mode="In" />
+          <Parameter Name="Broker" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrokerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="Representative" Type="nvarchar" Mode="In" />
+          <Parameter Name="BuyerBank" Type="nvarchar" Mode="In" />
+          <Parameter Name="HAContract" Type="tinyint" Mode="In" />
+          <Parameter Name="HAQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="NotifyPartyId" Type="int" Mode="In" />
+          <Parameter Name="ContractType" Type="nvarchar" Mode="In" />
+          <Parameter Name="AQIS" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fumigation" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeRules" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCondition" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddSupplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SupplierName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddTagDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagId" Type="int" Mode="In" />
+          <Parameter Name="PurId" Type="int" Mode="In" />
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+          <Parameter Name="TagQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddTagMaster" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="nvarchar" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+          <Parameter Name="id" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="uspAddUserAuth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetBuyerDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuyId" Type="int" Mode="In" />
+          <Parameter Name="BuyerName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetCommodityDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ComId" Type="int" Mode="In" />
+          <Parameter Name="CommodityName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TableName" Type="nvarchar" Mode="In" />
+          <Parameter Name="TableId" Type="int" Mode="In" />
+          <Parameter Name="DocType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetInvoiceDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetNotifyPartyDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParId" Type="int" Mode="In" />
+          <Parameter Name="PartyName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPackerDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PacId" Type="int" Mode="In" />
+          <Parameter Name="PackerName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPackingInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PackId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetPortDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PortId" Type="int" Mode="In" />
+          <Parameter Name="PortType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetPurchaseDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PurId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetRepresentativeDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RepId" Type="int" Mode="In" />
+          <Parameter Name="RepresentativeName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetSalesDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="uspGetStockDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspGetStockReconciliation" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="PackerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspGetStockSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspGetSupplierDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SupId" Type="int" Mode="In" />
+          <Parameter Name="SupplierName" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetTagDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagId" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspGetTagDetailInvoiced" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagId" Type="int" Mode="In" />
+          <Parameter Name="FromDate" Type="date" Mode="In" />
+          <Parameter Name="ToDate" Type="date" Mode="In" />
+        </Function>
+        <Function Name="uspGetUnTaggedPurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetUnTaggedSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetUserAuth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Token" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspGetUserDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PassWord" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspRemoveDocuments" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DocId" Type="int" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspSendMail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="MailSubject" Type="nvarchar" Mode="In" />
+          <Parameter Name="MailBody" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateBuyer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BuyId" Type="int" Mode="In" />
+          <Parameter Name="BuyerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateCommodity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ComId" Type="int" Mode="In" />
+          <Parameter Name="CommodityName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeTules" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateInvoice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="InvId" Type="int" Mode="In" />
+          <Parameter Name="TagDetId" Type="int" Mode="In" />
+          <Parameter Name="InvoiceNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="InvoiceDate" Type="date" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateNotifyParty" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ParId" Type="int" Mode="In" />
+          <Parameter Name="PartyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdatePacker" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PacId" Type="int" Mode="In" />
+          <Parameter Name="PackerName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdatePackingInstruction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PackId" Type="int" Mode="In" />
+          <Parameter Name="TagDetId" Type="int" Mode="In" />
+          <Parameter Name="Addressee" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContainerDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="Weight" Type="nvarchar" Mode="In" />
+          <Parameter Name="ShippingLine" Type="nvarchar" Mode="In" />
+          <Parameter Name="Vessel" Type="nvarchar" Mode="In" />
+          <Parameter Name="BookingRef" Type="nvarchar" Mode="In" />
+          <Parameter Name="VoyNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReleaseNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ETD" Type="date" Mode="In" />
+          <Parameter Name="EmptyDepot" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfLoading" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfTranshipment" Type="nvarchar" Mode="In" />
+          <Parameter Name="FinalDestination" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packer" Type="nvarchar" Mode="In" />
+          <Parameter Name="ReceivedQty" Type="decimal" Mode="In" />
+          <Parameter Name="ShippedQty" Type="decimal" Mode="In" />
+          <Parameter Name="AdjQty" Type="decimal" Mode="In" />
+          <Parameter Name="FXRate" Type="smallmoney" Mode="In" />
+          <Parameter Name="Brokerage_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="BankExp_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="DoxExp_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="Freight_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="Freight_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="OtherRequirement1" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement2" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement3" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement4" Type="nvarchar" Mode="In" />
+          <Parameter Name="OtherRequirement5" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="RFP" Type="nvarchar" Mode="In" />
+          <Parameter Name="EDN" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Exporter" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActFreight_AUD" Type="smallmoney" Mode="In" />
+          <Parameter Name="ActFreight_USD" Type="smallmoney" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdatePort" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PortId" Type="int" Mode="In" />
+          <Parameter Name="PortName" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortType" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdatePurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PurId" Type="int" Mode="In" />
+          <Parameter Name="ContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractDate" Type="date" Mode="In" />
+          <Parameter Name="SupplierId" Type="int" Mode="In" />
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quality" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="smallmoney" Mode="In" />
+          <Parameter Name="Currency" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryLocation" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryPeriod" Type="date" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfLoading" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentTerms" Type="nvarchar" Mode="In" />
+          <Parameter Name="Season" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeRules" Type="nvarchar" Mode="In" />
+          <Parameter Name="Broker" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrokerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCondition" Type="nvarchar" Mode="In" />
+          <Parameter Name="Representative" Type="nvarchar" Mode="In" />
+          <Parameter Name="RepresentativePhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="RepresentativeEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactPhone" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactFax" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContactEmail" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBank" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankABN" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankBSB" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankAccountNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerBankAccountName" Type="nvarchar" Mode="In" />
+          <Parameter Name="SellerContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractType" Type="nvarchar" Mode="In" />
+          <Parameter Name="HAContract" Type="tinyint" Mode="In" />
+          <Parameter Name="HAQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateRepresentative" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="RepId" Type="int" Mode="In" />
+          <Parameter Name="RepresentativeName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateSales" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+          <Parameter Name="ContractNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContractDate" Type="date" Mode="In" />
+          <Parameter Name="BuyerId" Type="int" Mode="In" />
+          <Parameter Name="Commodity" Type="nvarchar" Mode="In" />
+          <Parameter Name="CommoditySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quantity" Type="decimal" Mode="In" />
+          <Parameter Name="QuantitySpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Unit" Type="nvarchar" Mode="In" />
+          <Parameter Name="Quality" Type="nvarchar" Mode="In" />
+          <Parameter Name="Price" Type="smallmoney" Mode="In" />
+          <Parameter Name="PriceSpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Origin" Type="nvarchar" Mode="In" />
+          <Parameter Name="Currency" Type="nvarchar" Mode="In" />
+          <Parameter Name="DeliveryLocation" Type="nvarchar" Mode="In" />
+          <Parameter Name="Shipment" Type="date" Mode="In" />
+          <Parameter Name="ShipmentSpec" Type="nvarchar" Mode="In" />
+          <Parameter Name="Packing" Type="nvarchar" Mode="In" />
+          <Parameter Name="PortOfDischarge" Type="nvarchar" Mode="In" />
+          <Parameter Name="PaymentTerms" Type="nvarchar" Mode="In" />
+          <Parameter Name="Broker" Type="nvarchar" Mode="In" />
+          <Parameter Name="BrokerContact" Type="nvarchar" Mode="In" />
+          <Parameter Name="Representative" Type="nvarchar" Mode="In" />
+          <Parameter Name="BuyerBank" Type="nvarchar" Mode="In" />
+          <Parameter Name="HAContract" Type="tinyint" Mode="In" />
+          <Parameter Name="HAQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="NotifyPartyId" Type="int" Mode="In" />
+          <Parameter Name="ContractType" Type="nvarchar" Mode="In" />
+          <Parameter Name="AQIS" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fumigation" Type="nvarchar" Mode="In" />
+          <Parameter Name="TradeRules" Type="nvarchar" Mode="In" />
+          <Parameter Name="SpecialCondition" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateSupplier" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="SupId" Type="int" Mode="In" />
+          <Parameter Name="SupplierName" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddressLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="State" Type="nvarchar" Mode="In" />
+          <Parameter Name="PostalCode" Type="nvarchar" Mode="In" />
+          <Parameter Name="ContactPerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Phone" Type="nvarchar" Mode="In" />
+          <Parameter Name="Fax" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email1" Type="nvarchar" Mode="In" />
+          <Parameter Name="Email2" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateTagDetail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TagDetId" Type="int" Mode="In" />
+          <Parameter Name="PurId" Type="int" Mode="In" />
+          <Parameter Name="SaleId" Type="int" Mode="In" />
+          <Parameter Name="TagQuantity" Type="decimal" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UId" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="nvarchar" Mode="In" />
+          <Parameter Name="Active" Type="tinyint" Mode="In" />
+          <Parameter Name="UserId" Type="tinyint" Mode="In" />
+        </Function>
+        <Function Name="uspUpdateUserAuth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Token" Type="nvarchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TRADEHAREDBModelStoreContainer">
+          <EntitySet Name="ActivityLog" EntityType="Self.ActivityLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CommodityList" EntityType="Self.CommodityList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Invoice" EntityType="Self.Invoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotifyParty" EntityType="Self.NotifyParty" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packers" EntityType="Self.Packers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Packing" EntityType="Self.Packing" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PortList" EntityType="Self.PortList" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Representatives" EntityType="Self.Representatives" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sales" EntityType="Self.Sales" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagDetail" EntityType="Self.TagDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TagMaster" EntityType="Self.TagMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAuth" EntityType="Self.UserAuth" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="uvwLastPurchaseDetails" EntityType="Self.uvwLastPurchaseDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uvwLastPurchaseDetails].[Commodity] AS [Commodity], 
+    [uvwLastPurchaseDetails].[Quantitiy] AS [Quantitiy], 
+    [uvwLastPurchaseDetails].[Unit] AS [Unit], 
+    [uvwLastPurchaseDetails].[Quality] AS [Quality], 
+    [uvwLastPurchaseDetails].[Price] AS [Price], 
+    [uvwLastPurchaseDetails].[Currency] AS [Currency], 
+    [uvwLastPurchaseDetails].[DeliveryPeriod] AS [DeliveryPeriod], 
+    [uvwLastPurchaseDetails].[Packing] AS [Packing], 
+    [uvwLastPurchaseDetails].[PaymentTerms] AS [PaymentTerms], 
+    [uvwLastPurchaseDetails].[TradeRules] AS [TradeRules]
+    FROM [dbo].[uvwLastPurchaseDetails] AS [uvwLastPurchaseDetails]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="uvwLastSellerDetails" EntityType="Self.uvwLastSellerDetails" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [uvwLastSellerDetails].[SupplierId] AS [SupplierId], 
+    [uvwLastSellerDetails].[Broker] AS [Broker], 
+    [uvwLastSellerDetails].[BrokerContact] AS [BrokerContact], 
+    [uvwLastSellerDetails].[SellerContact] AS [SellerContact], 
+    [uvwLastSellerDetails].[SellerContactPhone] AS [SellerContactPhone], 
+    [uvwLastSellerDetails].[SellerContactFax] AS [SellerContactFax], 
+    [uvwLastSellerDetails].[SellerContactEmail] AS [SellerContactEmail], 
+    [uvwLastSellerDetails].[SellerBank] AS [SellerBank], 
+    [uvwLastSellerDetails].[SellerBankABN] AS [SellerBankABN], 
+    [uvwLastSellerDetails].[SellerBankBSB] AS [SellerBankBSB], 
+    [uvwLastSellerDetails].[SellerBankAccountNo] AS [SellerBankAccountNo], 
+    [uvwLastSellerDetails].[SellerBankAccountName] AS [SellerBankAccountName]
+    FROM [dbo].[uvwLastSellerDetails] AS [uvwLastSellerDetails]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TRADEHAREDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ActivityLog">
+          <Key>
+            <PropertyRef Name="ActId" />
+          </Key>
+          <Property Name="ActId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActType" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Byte" Nullable="false" />
+          <Property Name="TableName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="TableId" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="1999" FixedLength="false" Unicode="true" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="BuyId" />
+          </Key>
+          <Property Name="BuyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Email2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="CommodityList">
+          <Key>
+            <PropertyRef Name="ComId" />
+          </Key>
+          <Property Name="ComId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CommodityName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommoditySpec" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="TradeRules" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="DocId" />
+          </Key>
+          <Property Name="DocId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TableName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TableId" Type="Int32" Nullable="false" />
+          <Property Name="DocName" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="DocPath" Type="String" MaxLength="499" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DocType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserId" Type="Byte" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Invoice">
+          <Key>
+            <PropertyRef Name="InvId" />
+          </Key>
+          <Property Name="InvId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagDetId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceNo" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="0" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="NotifyParty">
+          <Key>
+            <PropertyRef Name="ParId" />
+          </Key>
+          <Property Name="ParId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PartyName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Email2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Packer">
+          <Key>
+            <PropertyRef Name="PacId" />
+          </Key>
+          <Property Name="PacId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PackerName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Email2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Packing">
+          <Key>
+            <PropertyRef Name="PackId" />
+          </Key>
+          <Property Name="PackId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagDetId" Type="Int32" Nullable="false" />
+          <Property Name="Packer" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Addressee" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Packing1" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="ContainerDetail" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="ShippingLine" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="Vessel" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="BookingRef" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="VoyNo" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="ReleaseNo" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="ETD" Type="DateTime" Precision="0" />
+          <Property Name="EmptyDepot" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfLoading" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="PortOfTranshipment" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="FinalDestination" Type="String" MaxLength="49" FixedLength="false" Unicode="true" />
+          <Property Name="OtherRequirement" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="ReceivedQty" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="ShippedQty" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="AdjQty" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="FXRate" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Brokerage_USD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="BankExp_USD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="DoxExp_USD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Freight_USD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Freight_AUD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="OtherRequirement1" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="OtherRequirement2" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="OtherRequirement3" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="OtherRequirement4" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="OtherRequirement5" Type="String" MaxLength="999" FixedLength="false" Unicode="true" />
+          <Property Name="Packing_AUD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="RFP" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="EDN" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="CommoditySpec" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Exporter" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="ActFreight_AUD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="ActFreight_USD" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="PortList">
+          <Key>
+            <PropertyRef Name="PortId" />
+          </Key>
+          <Property Name="PortId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PortName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PortType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="PurId" />
+          </Key>
+          <Property Name="PurId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContractDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ContractType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Commodity" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HAContract" Type="Byte" Nullable="false" />
+          <Property Name="HAQuantity" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Quality" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryPeriod" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Packing" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PortOfLoading" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Season" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TradeRules" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Broker" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="BrokerContact" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialCondition" Type="String" MaxLength="499" FixedLength="false" Unicode="true" />
+          <Property Name="Representative" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RepresentativePhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepresentativeEmail" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContact" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactFax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactEmail" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBank" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankABN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankBSB" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankAccountNo" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankAccountName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContractNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Representative">
+          <Key>
+            <PropertyRef Name="RepId" />
+          </Key>
+          <Property Name="RepId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepresentativeName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="SaleId" />
+          </Key>
+          <Property Name="SaleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContractNo" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContractDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ContractType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="BuyerId" Type="Int32" Nullable="false" />
+          <Property Name="NotifyPartyId" Type="Int32" />
+          <Property Name="Commodity" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CommoditySpec" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="QuantitySpec" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="HAContract" Type="Byte" Nullable="false" />
+          <Property Name="HAQuantity" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Quality" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" Nullable="false" />
+          <Property Name="PriceSpec" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Origin" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DeliveryLocation" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="Shipment" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ShipmentSpec" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="Packing" Type="String" MaxLength="199" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PortOfDischarge" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Broker" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="BrokerContact" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Representative" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="BuyerBank" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="AQIS" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Fumigation" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="TradeRules" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SpecialCondition" Type="String" MaxLength="499" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Supplier">
+          <Key>
+            <PropertyRef Name="SupId" />
+          </Key>
+          <Property Name="SupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="AddressLine2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="State" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Email2" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TagDetail">
+          <Key>
+            <PropertyRef Name="TagDetId" />
+          </Key>
+          <Property Name="TagDetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagId" Type="Int32" Nullable="false" />
+          <Property Name="PurId" Type="Int32" Nullable="false" />
+          <Property Name="SaleId" Type="Int32" Nullable="false" />
+          <Property Name="TagQuantity" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="TagMaster">
+          <Key>
+            <PropertyRef Name="TagId" />
+          </Key>
+          <Property Name="TagId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Commodity" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserAuth">
+          <Key>
+            <PropertyRef Name="UserLoginId" />
+          </Key>
+          <Property Name="UserLoginId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Token" Type="String" MaxLength="499" FixedLength="false" Unicode="true" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="Active" Type="Byte" />
+          <Property Name="Updt_Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Byte" Nullable="false" />
+          <Property Name="Updt_Time" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="uvwLastPurchaseDetail">
+          <Key>
+            <PropertyRef Name="Commodity" />
+          </Key>
+          <Property Name="Commodity" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Quantitiy" Type="Int32" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Quality" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="Currency" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DeliveryPeriod" Type="DateTime" Precision="0" />
+          <Property Name="Packing" Type="String" MaxLength="199" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentTerms" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="TradeRules" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="uvwLastSellerDetail">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Broker" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="BrokerContact" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContact" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactFax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerContactEmail" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBank" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankABN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankBSB" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankAccountNo" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="SellerBankAccountName" Type="String" MaxLength="99" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="TRADEHAREDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ActivityLogs" EntityType="Self.ActivityLog" />
+          <EntitySet Name="Buyers" EntityType="Self.Buyer" />
+          <EntitySet Name="CommodityLists" EntityType="Self.CommodityList" />
+          <EntitySet Name="Documents" EntityType="Self.Document" />
+          <EntitySet Name="Invoices" EntityType="Self.Invoice" />
+          <EntitySet Name="NotifyParties" EntityType="Self.NotifyParty" />
+          <EntitySet Name="Packers" EntityType="Self.Packer" />
+          <EntitySet Name="Packings" EntityType="Self.Packing" />
+          <EntitySet Name="PortLists" EntityType="Self.PortList" />
+          <EntitySet Name="Purchases" EntityType="Self.Purchase" />
+          <EntitySet Name="Representatives" EntityType="Self.Representative" />
+          <EntitySet Name="Sales" EntityType="Self.Sale" />
+          <EntitySet Name="Suppliers" EntityType="Self.Supplier" />
+          <EntitySet Name="TagDetails" EntityType="Self.TagDetail" />
+          <EntitySet Name="TagMasters" EntityType="Self.TagMaster" />
+          <EntitySet Name="UserAuths" EntityType="Self.UserAuth" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="uvwLastPurchaseDetails" EntityType="Self.uvwLastPurchaseDetail" />
+          <EntitySet Name="uvwLastSellerDetails" EntityType="Self.uvwLastSellerDetail" />
+          <FunctionImport Name="GetCommodity" EntitySet="CommodityLists" ReturnType="Collection(TRADEHAREDBModel.CommodityList)">
+            <Parameter Name="ComId" Mode="In" Type="Int32" />
+            <Parameter Name="CommodityName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="AddCommodity">
+            <Parameter Name="CommodityName" Mode="In" Type="String" />
+            <Parameter Name="CommoditySpec" Mode="In" Type="String" />
+            <Parameter Name="TradeRules" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Byte" />
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateCommodity">
+            <Parameter Name="ComId" Mode="In" Type="Int32" />
+            <Parameter Name="CommodityName" Mode="In" Type="String" />
+            <Parameter Name="CommoditySpec" Mode="In" Type="String" />
+            <Parameter Name="TradeTules" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Byte" />
+            <Parameter Name="UserId" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="AddPort">
+            <Parameter Name="PortName" Mode="In" Type="String" />
+            <Parameter Name="PortType" Mode="In" Type="String" />
+            <Parameter Name="UserId" Mode="In" Type="Byte" />
+            <Parameter Name="id" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdatePort">
+            <Parameter Name="PortId" Mode="In" Type="Int32" />
+            <Parameter Name="PortName" Mode="In" Type="String" />
+            <Parameter Name="PortType" Mode="In" Type="String" />
+            <Parameter Name="Active" Mode="In" Type="Byte" />
+            <Parameter Name="UserId" Mode="In" Type="Byte" />
+          </FunctionImport>
+          <FunctionImport Name="GetAllPorts" EntitySet="PortLists" ReturnType="Collection(TRADEHAREDBModel.PortList)">
+            <Parameter Name="PortId" Mode="In" Type="Int32" />
+            <Parameter Name="PortType" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TRADEHAREDBModelStoreContainer" CdmEntityContainer="TRADEHAREDBEntities">
+          <EntitySetMapping Name="ActivityLogs">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.ActivityLog">
+              <MappingFragment StoreEntitySet="ActivityLog">
+                <ScalarProperty Name="ActId" ColumnName="ActId" />
+                <ScalarProperty Name="ActType" ColumnName="ActType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Buyers">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyers">
+                <ScalarProperty Name="BuyId" ColumnName="BuyId" />
+                <ScalarProperty Name="BuyerName" ColumnName="BuyerName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CommodityLists">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.CommodityList">
+              <MappingFragment StoreEntitySet="CommodityList">
+                <ScalarProperty Name="ComId" ColumnName="ComId" />
+                <ScalarProperty Name="CommodityName" ColumnName="CommodityName" />
+                <ScalarProperty Name="CommoditySpec" ColumnName="CommoditySpec" />
+                <ScalarProperty Name="TradeRules" ColumnName="TradeRules" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Documents">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Document">
+              <MappingFragment StoreEntitySet="Documents">
+                <ScalarProperty Name="DocId" ColumnName="DocId" />
+                <ScalarProperty Name="TableName" ColumnName="TableName" />
+                <ScalarProperty Name="TableId" ColumnName="TableId" />
+                <ScalarProperty Name="DocName" ColumnName="DocName" />
+                <ScalarProperty Name="DocPath" ColumnName="DocPath" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Invoices">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Invoice">
+              <MappingFragment StoreEntitySet="Invoice">
+                <ScalarProperty Name="InvId" ColumnName="InvId" />
+                <ScalarProperty Name="TagDetId" ColumnName="TagDetId" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotifyParties">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.NotifyParty">
+              <MappingFragment StoreEntitySet="NotifyParty">
+                <ScalarProperty Name="ParId" ColumnName="ParId" />
+                <ScalarProperty Name="PartyName" ColumnName="PartyName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packers">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Packer">
+              <MappingFragment StoreEntitySet="Packers">
+                <ScalarProperty Name="PacId" ColumnName="PacId" />
+                <ScalarProperty Name="PackerName" ColumnName="PackerName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Packings">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Packing">
+              <MappingFragment StoreEntitySet="Packing">
+                <ScalarProperty Name="PackId" ColumnName="PackId" />
+                <ScalarProperty Name="TagDetId" ColumnName="TagDetId" />
+                <ScalarProperty Name="Packer" ColumnName="Packer" />
+                <ScalarProperty Name="Addressee" ColumnName="Addressee" />
+                <ScalarProperty Name="Packing1" ColumnName="Packing" />
+                <ScalarProperty Name="ContainerDetail" ColumnName="ContainerDetail" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ShippingLine" ColumnName="ShippingLine" />
+                <ScalarProperty Name="Vessel" ColumnName="Vessel" />
+                <ScalarProperty Name="BookingRef" ColumnName="BookingRef" />
+                <ScalarProperty Name="VoyNo" ColumnName="VoyNo" />
+                <ScalarProperty Name="ReleaseNo" ColumnName="ReleaseNo" />
+                <ScalarProperty Name="ETD" ColumnName="ETD" />
+                <ScalarProperty Name="EmptyDepot" ColumnName="EmptyDepot" />
+                <ScalarProperty Name="PortOfLoading" ColumnName="PortOfLoading" />
+                <ScalarProperty Name="PortOfTranshipment" ColumnName="PortOfTranshipment" />
+                <ScalarProperty Name="FinalDestination" ColumnName="FinalDestination" />
+                <ScalarProperty Name="OtherRequirement" ColumnName="OtherRequirement" />
+                <ScalarProperty Name="ReceivedQty" ColumnName="ReceivedQty" />
+                <ScalarProperty Name="ShippedQty" ColumnName="ShippedQty" />
+                <ScalarProperty Name="AdjQty" ColumnName="AdjQty" />
+                <ScalarProperty Name="FXRate" ColumnName="FXRate" />
+                <ScalarProperty Name="Brokerage_USD" ColumnName="Brokerage_USD" />
+                <ScalarProperty Name="BankExp_USD" ColumnName="BankExp_USD" />
+                <ScalarProperty Name="DoxExp_USD" ColumnName="DoxExp_USD" />
+                <ScalarProperty Name="Freight_USD" ColumnName="Freight_USD" />
+                <ScalarProperty Name="Freight_AUD" ColumnName="Freight_AUD" />
+                <ScalarProperty Name="OtherRequirement1" ColumnName="OtherRequirement1" />
+                <ScalarProperty Name="OtherRequirement2" ColumnName="OtherRequirement2" />
+                <ScalarProperty Name="OtherRequirement3" ColumnName="OtherRequirement3" />
+                <ScalarProperty Name="OtherRequirement4" ColumnName="OtherRequirement4" />
+                <ScalarProperty Name="OtherRequirement5" ColumnName="OtherRequirement5" />
+                <ScalarProperty Name="Packing_AUD" ColumnName="Packing_AUD" />
+                <ScalarProperty Name="RFP" ColumnName="RFP" />
+                <ScalarProperty Name="EDN" ColumnName="EDN" />
+                <ScalarProperty Name="CommoditySpec" ColumnName="CommoditySpec" />
+                <ScalarProperty Name="Exporter" ColumnName="Exporter" />
+                <ScalarProperty Name="ActFreight_AUD" ColumnName="ActFreight_AUD" />
+                <ScalarProperty Name="ActFreight_USD" ColumnName="ActFreight_USD" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PortLists">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.PortList">
+              <MappingFragment StoreEntitySet="PortList">
+                <ScalarProperty Name="PortId" ColumnName="PortId" />
+                <ScalarProperty Name="PortName" ColumnName="PortName" />
+                <ScalarProperty Name="PortType" ColumnName="PortType" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchases">
+                <ScalarProperty Name="PurId" ColumnName="PurId" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="HAContract" ColumnName="HAContract" />
+                <ScalarProperty Name="HAQuantity" ColumnName="HAQuantity" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+                <ScalarProperty Name="DeliveryPeriod" ColumnName="DeliveryPeriod" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="PortOfLoading" ColumnName="PortOfLoading" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="Season" ColumnName="Season" />
+                <ScalarProperty Name="TradeRules" ColumnName="TradeRules" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="BrokerContact" ColumnName="BrokerContact" />
+                <ScalarProperty Name="SpecialCondition" ColumnName="SpecialCondition" />
+                <ScalarProperty Name="Representative" ColumnName="Representative" />
+                <ScalarProperty Name="RepresentativePhone" ColumnName="RepresentativePhone" />
+                <ScalarProperty Name="RepresentativeEmail" ColumnName="RepresentativeEmail" />
+                <ScalarProperty Name="SellerContact" ColumnName="SellerContact" />
+                <ScalarProperty Name="SellerContactPhone" ColumnName="SellerContactPhone" />
+                <ScalarProperty Name="SellerContactFax" ColumnName="SellerContactFax" />
+                <ScalarProperty Name="SellerContactEmail" ColumnName="SellerContactEmail" />
+                <ScalarProperty Name="SellerBank" ColumnName="SellerBank" />
+                <ScalarProperty Name="SellerBankABN" ColumnName="SellerBankABN" />
+                <ScalarProperty Name="SellerBankBSB" ColumnName="SellerBankBSB" />
+                <ScalarProperty Name="SellerBankAccountNo" ColumnName="SellerBankAccountNo" />
+                <ScalarProperty Name="SellerBankAccountName" ColumnName="SellerBankAccountName" />
+                <ScalarProperty Name="SellerContractNo" ColumnName="SellerContractNo" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Representatives">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Representative">
+              <MappingFragment StoreEntitySet="Representatives">
+                <ScalarProperty Name="RepId" ColumnName="RepId" />
+                <ScalarProperty Name="RepresentativeName" ColumnName="RepresentativeName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Sale">
+              <MappingFragment StoreEntitySet="Sales">
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="ContractNo" ColumnName="ContractNo" />
+                <ScalarProperty Name="ContractDate" ColumnName="ContractDate" />
+                <ScalarProperty Name="ContractType" ColumnName="ContractType" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="NotifyPartyId" ColumnName="NotifyPartyId" />
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="CommoditySpec" ColumnName="CommoditySpec" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="QuantitySpec" ColumnName="QuantitySpec" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="HAContract" ColumnName="HAContract" />
+                <ScalarProperty Name="HAQuantity" ColumnName="HAQuantity" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceSpec" ColumnName="PriceSpec" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="DeliveryLocation" ColumnName="DeliveryLocation" />
+                <ScalarProperty Name="Shipment" ColumnName="Shipment" />
+                <ScalarProperty Name="ShipmentSpec" ColumnName="ShipmentSpec" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="PortOfDischarge" ColumnName="PortOfDischarge" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="BrokerContact" ColumnName="BrokerContact" />
+                <ScalarProperty Name="Representative" ColumnName="Representative" />
+                <ScalarProperty Name="BuyerBank" ColumnName="BuyerBank" />
+                <ScalarProperty Name="AQIS" ColumnName="AQIS" />
+                <ScalarProperty Name="Fumigation" ColumnName="Fumigation" />
+                <ScalarProperty Name="TradeRules" ColumnName="TradeRules" />
+                <ScalarProperty Name="SpecialCondition" ColumnName="SpecialCondition" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Suppliers">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.Supplier">
+              <MappingFragment StoreEntitySet="Suppliers">
+                <ScalarProperty Name="SupId" ColumnName="SupId" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email1" ColumnName="Email1" />
+                <ScalarProperty Name="Email2" ColumnName="Email2" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagDetails">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.TagDetail">
+              <MappingFragment StoreEntitySet="TagDetail">
+                <ScalarProperty Name="TagDetId" ColumnName="TagDetId" />
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="PurId" ColumnName="PurId" />
+                <ScalarProperty Name="SaleId" ColumnName="SaleId" />
+                <ScalarProperty Name="TagQuantity" ColumnName="TagQuantity" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TagMasters">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.TagMaster">
+              <MappingFragment StoreEntitySet="TagMaster">
+                <ScalarProperty Name="TagId" ColumnName="TagId" />
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAuths">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.UserAuth">
+              <MappingFragment StoreEntitySet="UserAuth">
+                <ScalarProperty Name="UserLoginId" ColumnName="UserLoginId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Token" ColumnName="Token" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Updt_Time" ColumnName="Updt_Time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uvwLastPurchaseDetails">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.uvwLastPurchaseDetail">
+              <MappingFragment StoreEntitySet="uvwLastPurchaseDetails">
+                <ScalarProperty Name="Commodity" ColumnName="Commodity" />
+                <ScalarProperty Name="Quantitiy" ColumnName="Quantitiy" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="DeliveryPeriod" ColumnName="DeliveryPeriod" />
+                <ScalarProperty Name="Packing" ColumnName="Packing" />
+                <ScalarProperty Name="PaymentTerms" ColumnName="PaymentTerms" />
+                <ScalarProperty Name="TradeRules" ColumnName="TradeRules" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="uvwLastSellerDetails">
+            <EntityTypeMapping TypeName="TRADEHAREDBModel.uvwLastSellerDetail">
+              <MappingFragment StoreEntitySet="uvwLastSellerDetails">
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="Broker" ColumnName="Broker" />
+                <ScalarProperty Name="BrokerContact" ColumnName="BrokerContact" />
+                <ScalarProperty Name="SellerContact" ColumnName="SellerContact" />
+                <ScalarProperty Name="SellerContactPhone" ColumnName="SellerContactPhone" />
+                <ScalarProperty Name="SellerContactFax" ColumnName="SellerContactFax" />
+                <ScalarProperty Name="SellerContactEmail" ColumnName="SellerContactEmail" />
+                <ScalarProperty Name="SellerBank" ColumnName="SellerBank" />
+                <ScalarProperty Name="SellerBankABN" ColumnName="SellerBankABN" />
+                <ScalarProperty Name="SellerBankBSB" ColumnName="SellerBankBSB" />
+                <ScalarProperty Name="SellerBankAccountNo" ColumnName="SellerBankAccountNo" />
+                <ScalarProperty Name="SellerBankAccountName" ColumnName="SellerBankAccountName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCommodity" FunctionName="TRADEHAREDBModel.Store.uspGetCommodityDetail" />
+          <FunctionImportMapping FunctionImportName="AddCommodity" FunctionName="TRADEHAREDBModel.Store.uspAddCommodity" />
+          <FunctionImportMapping FunctionImportName="UpdateCommodity" FunctionName="TRADEHAREDBModel.Store.uspUpdateCommodity" />
+          <FunctionImportMapping FunctionImportName="AddPort" FunctionName="TRADEHAREDBModel.Store.uspAddPort" />
+          <FunctionImportMapping FunctionImportName="UpdatePort" FunctionName="TRADEHAREDBModel.Store.uspUpdatePort" />
+          <FunctionImportMapping FunctionImportName="GetAllPorts" FunctionName="TRADEHAREDBModel.Store.uspGetPortDetail" />
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
